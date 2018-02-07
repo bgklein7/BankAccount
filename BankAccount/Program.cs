@@ -10,10 +10,15 @@ namespace BankAccount
     {
         static void Main(string[] args)
         {
-            Account userAccount = new Account();
-            int userChoice;
+            ClientInfo userInfo = new ClientInfo("Ben", "Klein", 1560, "Saint Charles Ave", "Lakewood", "OH", 44107);
+            CheckingAccount userChecking = new CheckingAccount(1234, 10000.99);
+            SavingsAccount userSavings = new SavingsAccount(5678, 25000.89);
 
+            int userChoice;
+            char userChoice2;
+            
             Console.WriteLine("Welcome to 99th Federal Bank of WCCI");
+            Console.WriteLine("");
 
             do
             {
@@ -29,17 +34,71 @@ namespace BankAccount
                 switch (userChoice)
                 {
                     case 1:
-                        userAccount.ViewInfo();
+                        userInfo.ViewInfo();
                         break;
                     case 2:
-                        userAccount.ViewBalance();
-                        break;
+                         Console.WriteLine("Which account balance do you wish to check?");
+                         Console.WriteLine("Type C for checking");
+                         Console.WriteLine("Type S for savings");
+
+                            userChoice2 = char.Parse(Console.ReadLine().ToUpper());
+
+                            if (userChoice2 == 'C')
+                            {
+                                userChecking.ViewBalance();//does it know which subclass method to call?
+                                break;
+                            }
+                            else if (userChoice2 == 'S')
+                            {
+                                userSavings.ViewBalance();
+                                break;
+                            }
+                            else
+                            {
+                            break;
+                            }
                     case 3:
-                        userAccount.DepositFunds();
-                        break;
+                        Console.WriteLine("Which account do you wish to deposit funds to?");
+                        Console.WriteLine("Type C for checking");
+                        Console.WriteLine("Type S for savings");
+
+                        userChoice2 = char.Parse(Console.ReadLine().ToUpper());
+
+                        if (userChoice2 == 'C')
+                        {
+                            userChecking.DepositFunds();
+                            break;
+                        }
+                        else if (userChoice2 == 'S')
+                        {
+                            userSavings.DepositFunds();
+                            break;
+                        }
+                        else
+                        {
+                            break;
+                        }
                     case 4:
-                        userAccount.WithdrawFunds();
-                        break;
+                        Console.WriteLine("Which account do you wish to withdraw funds from?");
+                        Console.WriteLine("Type C for checking");
+                        Console.WriteLine("Type S for savings");
+
+                        userChoice2 = char.Parse(Console.ReadLine().ToUpper());
+
+                        if (userChoice2 == 'C')
+                        {
+                            userChecking.WithdrawFunds();
+                            break;
+                        }
+                        else if (userChoice2 == 'S')
+                        {
+                            userSavings.WithdrawFunds();
+                            break;
+                        }
+                        else
+                        {
+                            break;
+                        }
                     case 5:
                         Console.WriteLine("Goodbye.");
                         break;
