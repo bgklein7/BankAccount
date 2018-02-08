@@ -23,7 +23,8 @@ namespace BankAccount
             //default constructor
         }
 
-        public CheckingAccount(int checkingAcctNumber, double checkingBalance)
+        public CheckingAccount(int checkingAcctNumber, double checkingBalance) //can pass object into here e.g. ClientInfo userInfo. Would have to make base class fields protected instead of private.
+            //in an abstract class not all methods have to be abstract can also be virtual.  But all abstract methods must be in an abstract class.
         {
             CheckingAcctNumber = checkingAcctNumber;
             CheckingBalance = checkingBalance;
